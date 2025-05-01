@@ -1,7 +1,7 @@
 import { HttpException } from '@/exceptions/HttpException';
-import { openAIHelper } from '@/server';
-import { isBase64Image } from '@/utils/data';
 import { Service } from 'typedi';
+import { isBase64Image } from '@/utils/data';
+import { openAIHelper } from '@/server';
 
 @Service()
 export class OpenaiService {
@@ -14,6 +14,7 @@ export class OpenaiService {
                         2. It must not be a screenshot.
                         3. It must include the date of the purchase.
                         4. It must include the name of the store where the purchase was made.
+                        5. The item must not be new. (e.g. Condition is refurbished, like new, used; or it comes from a 2nd hand store like eBay, Amazon Renewed, Depop, Poshmark, Offerup, Karrot)
                     Please respond always and uniquely with the following JSON object as you are REST API that returns the following object:
                     {
                     "validityFactor": {validityFactorNumber}, // 0-1, 1 if it satisfies all the criteria, 0 otherwise
